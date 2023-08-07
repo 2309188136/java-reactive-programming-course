@@ -13,7 +13,7 @@ public class Lec03MonoSubscribe {
                                 .map(l -> l / 1);
 
         // 1
-        // mono.subscribe();
+        // mono.subscribe(); //terminal subscribe call triggers emitting operation
 
         // 2
         mono.subscribe(
