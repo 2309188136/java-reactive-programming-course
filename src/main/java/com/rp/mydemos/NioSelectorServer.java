@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Set;
 
 /*
+use putty telnet as test client
+cmd telnet localhost 9000
 https://www.bilibili.com/video/BV13e4y1i7SG/?p=3&spm_id_from=333.880.my_history.page.click&vd_source=fcf7e27785f56f99a8022caee7691349
  */
 public class NioSelectorServer {
@@ -30,6 +32,7 @@ public class NioSelectorServer {
         System.out.println("服务器启动成功");
 
         while (!Thread.currentThread().isInterrupted()) {
+
             selector.select(); //没有 IO　事件，会堵塞；等待IO　事件发生
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = selectionKeys.iterator();
@@ -41,7 +44,7 @@ public class NioSelectorServer {
                 if (key.isAcceptable()) {
                     ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
                     SocketChannel socketChannel = serverChannel.accept();
-                    serverChannel.configureBlocking(false);
+                    socketChannel.configureBlocking(false);
                     // 这里只注册了读事件， 如果需要给客户短发送数据可以注册写事件
                     socketChannel.register(selector, SelectionKey.OP_READ);
                     System.out.println("客户端链接成功");
@@ -55,9 +58,7 @@ public class NioSelectorServer {
                         System.out.println("客户端断开链接");
                         sc.close();
                     }
-
                 }
-
             }
             //从事件集合里删除本次处理的 key, 防止 下次 select 重复处理
             iterator.remove();
