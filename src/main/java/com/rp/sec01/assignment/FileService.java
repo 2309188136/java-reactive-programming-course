@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class FileService {
+public class    FileService {
 
     private static final Path PATH = Paths.get("src/main/resources/assignment/sec01");
 
