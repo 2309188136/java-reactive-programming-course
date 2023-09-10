@@ -19,18 +19,32 @@ public class Lec03DoCallbacks {
         .doOnComplete(() -> System.out.println("doOnComplete"))
         .doFirst(() -> System.out.println("doFirst"))
         .doOnNext(o -> System.out.println("doOnNext : " + o))
-        .doOnSubscribe(s -> System.out.println("doOnSubscribe" + s))
+        .doOnSubscribe(s -> System.out.println("doOnSubscribe: " + s))
         .doOnRequest(l -> System.out.println("doOnRequest : " + l))
         .doOnError(err -> System.out.println("doOnError : " + err.getMessage()))
         .doOnTerminate(() -> System.out.println("doOnTerminate"))
         .doOnCancel(() -> System.out.println("doOnCancel"))
         .doFinally(signal -> System.out.println("doFinally 1 : " + signal))
         .doOnDiscard(Object.class, o -> System.out.println("doOnDiscard : " + o))
-        .take(2)
-                .doFinally(signal -> System.out.println("doFinally 2 : " + signal))
+        /*
+            take operation only take 2 emitted items from publisher and send cancel-signal
+            thus no doOnTerminate
+            where you place operator(s) matter as for example .doFinally
+            chain operator/operation to flux is like decorating flux into new decorator
+            take operator send cancel signal to the upstream
+         */
+            .take(2)
+            .doFinally(signal -> System.out.println("doFinally 2 : " + signal))
         .subscribe(Util.subscriber());
 
 
+        /** Note:
+         -Request-related operators (operator call above .subscribe method) execute from bottom to top
+         -Publish-related operators execute from top to bottom because
+          subscription object is passed to publisher above to subscriber below
+         -doFinally similarly to try/finally
+
+         */
     }
 
 }

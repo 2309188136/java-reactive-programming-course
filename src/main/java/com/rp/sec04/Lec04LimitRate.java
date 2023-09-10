@@ -9,7 +9,8 @@ public class Lec04LimitRate {
 
         Flux.range(1, 1000) // 175
                 .log()
-                .limitRate(100, 0) // 75%
+            // .limitRate(100, 100) //  still behave 75%
+                .limitRate(100, 0) // 100 % drain 100 in batch
                 .subscribe(Util.subscriber());
 
 

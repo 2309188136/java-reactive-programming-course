@@ -7,6 +7,10 @@ public class Lec07FluxGenerateCounter {
 
     public static void main(String[] args) {
 
+      // canada
+      // max = 10
+      // subscriber cancels - exit
+
         Flux.generate(
                 () -> 1,
                 (counter, sink) -> {
@@ -19,7 +23,6 @@ public class Lec07FluxGenerateCounter {
         )
         .take(4)
         .subscribe(Util.subscriber());
-
 
     }
 

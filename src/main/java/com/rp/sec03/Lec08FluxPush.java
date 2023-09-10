@@ -11,8 +11,12 @@ public class Lec08FluxPush {
 
         NameProducer nameProducer = new NameProducer();
 
-        Flux.create(nameProducer)
-                .subscribe(Util.subscriber());
+//        Flux.create(nameProducer)
+//                .subscribe(Util.subscriber());
+
+        // push operation is not multi-thread safe
+        Flux.push(nameProducer)
+            .subscribe(Util.subscriber());
 
         Runnable runnable = nameProducer::produce;
 
