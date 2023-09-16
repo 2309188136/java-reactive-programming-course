@@ -20,7 +20,7 @@ public class Lec04HotPublishAutoConnect {
         movieStream
                 .subscribe(Util.subscriber("sam"));
 
-        Util.sleepSeconds(10);
+        Util.sleepSeconds(2);
 
         System.out.println("Mike is about to join");
 

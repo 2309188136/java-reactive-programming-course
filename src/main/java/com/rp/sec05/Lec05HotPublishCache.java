@@ -10,10 +10,10 @@ public class Lec05HotPublishCache {
 
     public static void main(String[] args) {
         // share = publish().refCount(1)
-        // cache = publish().replay() int.max
+        // cache = publish().replay() cache goes up int.max
         Flux<String> movieStream = Flux.fromStream(() -> getMovie())
                 .delayElements(Duration.ofSeconds(1))
-                .cache(2);
+                .cache(2); // cache last 2
 
         Util.sleepSeconds(2);
 
