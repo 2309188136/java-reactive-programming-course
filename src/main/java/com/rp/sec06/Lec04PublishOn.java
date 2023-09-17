@@ -15,7 +15,7 @@ public class Lec04PublishOn {
             }
             fluxSink.complete();
         })
-        .doOnNext(i -> printThreadName("next " + i));
+        .doOnNext(i -> printThreadName("create next " + i));
 
 
         flux
