@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 public class Lec03Merge {
 
     public static void main(String[] args) {
-
+        // merge concurrent sequence
         Flux<String> merge = Flux.merge(
                 Qatar.getFlights(),
                 Emirates.getFlights(),

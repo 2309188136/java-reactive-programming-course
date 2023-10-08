@@ -11,7 +11,7 @@ public class Lec02Concat {
         Flux<String> flux2 = Flux.error(new RuntimeException("oops"));
         Flux<String> flux3 = Flux.just("c", "d", "e");
 
-
+        // concat : one by one sequence
         Flux<String> flux = Flux.concatDelayError(flux1, flux2, flux3);
 
 
