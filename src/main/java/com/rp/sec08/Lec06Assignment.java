@@ -9,6 +9,8 @@ public class Lec06Assignment {
 
     public static void main(String[] args) {
 
+        //https://www.udemy.com/course/complete-java-reactive-programming/learn/lecture/24544350#overview
+
         final int carPrice = 10000;
         Flux.combineLatest(monthStream(), demandStream(), (month, demand) -> {
             return (carPrice - (month * 100)) * demand;

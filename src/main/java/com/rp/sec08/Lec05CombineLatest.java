@@ -17,6 +17,13 @@ public class Lec05CombineLatest {
     }
 
     private static Flux<String> getString(){
+
+        //Note delayElements operation use Schedulers.parallel
+        //DEFAULT_POOL_SIZE =
+        //			Optional.ofNullable(System.getProperty("reactor.schedulers.defaultPoolSize"))
+        //					.map(Integer::parseInt)
+        //					.orElseGet(() -> Runtime.getRuntime().availableProcessors()
+
         return Flux.just("A", "B", "C", "D")
                     .delayElements(Duration.ofSeconds(1));
     }
