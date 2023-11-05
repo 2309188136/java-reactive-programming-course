@@ -21,7 +21,7 @@ public class Lec05Group {
     }
 
     private static void process(Flux<Integer> flux , int key){
-        System.out.println("Called");
+        System.out.println(String.format("Subscriber thread %s Called ", Thread.currentThread().getName()));
         flux.subscribe(i -> System.out.println("Key : " + key + ", Item : " + i));
     }
 

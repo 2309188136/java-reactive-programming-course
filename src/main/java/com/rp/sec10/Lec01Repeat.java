@@ -11,6 +11,7 @@ public class Lec01Repeat {
 
     public static void main(String[] args) {
 
+        // getIntegers().repeat(2).subscribe(Util.subscriber()); //repeat two more times
         getIntegers()
                 .repeat(() -> atomicInteger.get() < 14)
                 .subscribe(Util.subscriber());

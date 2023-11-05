@@ -4,6 +4,7 @@ import com.rp.courseutil.Util;
 import com.rp.sec09.assignment.OrderProcessor;
 import com.rp.sec09.assignment.OrderService;
 import com.rp.sec09.assignment.PurchaseOrder;
+import java.time.Duration;
 import reactor.core.publisher.Flux;
 
 import java.util.Map;
@@ -23,6 +24,7 @@ public class Lec06Assignment {
 
         OrderService.orderStream()
                 .filter(p -> set.contains(p.getCategory()))
+                //.delayElements(Duration.ofSeconds(1))
                 .groupBy(PurchaseOrder::getCategory)  // 2 keys
                 .flatMap(gf -> map.get(gf.key()).apply(gf)) //flux
                 .subscribe(Util.subscriber());

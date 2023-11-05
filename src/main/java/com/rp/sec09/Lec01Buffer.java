@@ -13,6 +13,7 @@ public class Lec01Buffer {
                 .bufferTimeout(5, Duration.ofSeconds(2))
                 .subscribe(Util.subscriber());
 
+        //buffer(maxSiz3) == buffor(maxSize3, skip3)
         Util.sleepSeconds(60);
 
     }

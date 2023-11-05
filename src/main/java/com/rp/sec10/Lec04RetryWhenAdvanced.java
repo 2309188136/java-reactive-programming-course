@@ -14,8 +14,8 @@ public class Lec04RetryWhenAdvanced {
                 .retryWhen(Retry.from(
                      flux -> flux
                                 .doOnNext(rs -> {
-                                    System.out.println(rs.totalRetries());
-                                    System.out.println(rs.failure());
+                                    System.out.println("total-retried:" + rs.totalRetries());
+                                    System.out.println("total-failure: " + rs.failure());
                                 })
                                 .handle((rs, synchronousSink) -> {
                                     if(rs.failure().getMessage().equals("500"))
